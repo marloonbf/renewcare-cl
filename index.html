@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Oxys – Información antes de la oferta oficial</title>
+
+  <style>
+    :root {
+      --accent: #e11d48;
+      --accent-dark: #be123c;
+      --bg-soft: #f9fafb;
+      --text-main: #111827;
+      --text-muted: #4b5563;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-soft);
+      color: var(--text-main);
+      padding: 16px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 22px 18px 26px;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(15,23,42,0.12);
+    }
+
+    .top-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #9f1239;
+      background: #ffe4e6;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .top-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .timer-bar {
+      font-size: 13px;
+      background: #fef2f2;
+      border-radius: 10px;
+      padding: 8px 10px;
+      color: #b91c1c;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .timer-label {
+      font-weight: 600;
+    }
+
+    .timer-value {
+      font-weight: 700;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 18px;
+      align-items: center;
+    }
+
+    @media (max-width: 780px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .img-box {
+      display: flex;
+      justify-content: center;
+    }
+
+    .img-box img {
+      max-width: 260px;
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    .benefits-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .benefits {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 14px;
+    }
+
+    .benefits li {
+      font-size: 14px;
+      margin-bottom: 6px;
+      padding-left: 18px;
+      position: relative;
+      color: var(--text-main);
+    }
+
+    .benefits li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 13px 16px;
+      border-radius: 999px;
+      border: none;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      margin-top: 10px;
+      transition: 0.15s ease;
+    }
+
+    @keyframes pulse-cta {
+      0% { transform: translateY(0) scale(1); box-shadow: 0 12px 25px rgba(225,29,72,0.45); }
+      50% { transform: translateY(-1px) scale(1.02); box-shadow: 0 18px 30px rgba(225,29,72,0.6); }
+      100% { transform: translateY(0) scale(1); box-shadow: 0 12px 25px rgba(225,29,72,0.45); }
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+      animation: pulse-cta 1.8s ease-in-out infinite;
+    }
+
+    .btn-secondary {
+      background: #111827;
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+    }
+
+    .soft-proof,
+    .disclaimer {
+      font-size: 12px;
+      color: #6b7280;
+      margin-top: 12px;
+      line-height: 1.45;
+    }
+
+    /* COOKIE BANNER */
+    #cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #f3f4f6;
+      border-top: 1px solid #e5e7eb;
+      padding: 10px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      z-index: 9998;
+      gap: 10px;
+    }
+
+    #cookie-banner button {
+      padding: 8px 14px;
+      background: var(--accent);
+      border: none;
+      border-radius: 999px;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    @media (max-width: 640px) {
+      #cookie-banner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      #cookie-banner button {
+        width: 100%;
+      }
+    }
+
+    /* EXIT POPUP */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,23,42,0.65);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .exit-modal {
+      max-width: 360px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 18px 16px 16px;
+      box-shadow: 0 20px 40px rgba(15,23,42,0.4);
+    }
+
+    .exit-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .exit-text {
+      font-size: 13px;
+      color: #4b5563;
+      margin-bottom: 12px;
+    }
+
+    .exit-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .exit-btn-main {
+      flex: 1;
+      padding: 9px 10px;
+      border-radius: 999px;
+      border: none;
+      background: var(--accent);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .exit-btn-secondary {
+      padding: 9px 10px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      font-size: 12px;
+      color: #4b5563;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="top-tag">
+      <span class="top-dot"></span>
+      Contenido informativo antes de la página oficial
+    </div>
+
+    <h1>Oxys – Crema facial que muchas chilenas están añadiendo a su rutina diaria</h1>
+
+    <p class="subtitle">
+      Antes de ir al sitio del proveedor, revisa este resumen rápido para ver si Oxys encaja en tu rutina de cuidado personal.
+    </p>
+
+    <div class="timer-bar">
+      <span class="timer-label">Próxima actualización de la página en:</span>
+      <span id="timer" class="timer-value">09:59</span>
+    </div>
+
+    <div class="content-grid">
+      <div>
+        <p style="font-size:14px; color:var(--text-muted); margin-bottom:10px;">
+          Oxys es una crema cosmética para uso externo, pensada para acompañar el cuidado
+          de la piel dentro de una rutina diaria sencilla.
+        </p>
+
+        <p class="benefits-title">Lo que muchas usuarias valoran de Oxys:</p>
+        <ul class="benefits">
+          <li>Textura ligera y fácil de aplicar en el rostro.</li>
+          <li>Ideal para complementar una rutina básica de limpieza.</li>
+          <li>Agradable para uso diario, mañana y noche.</li>
+          <li>Producto del proveedor oficial, con formulario directo de pedido.</li>
+        </ul>
+
+        <a
+          class="btn btn-primary"
+          id="main-cta"
+          href="https://5adb6f.asdnecfoqwq.cc/?target=-7EBNQCgQAAAfApAQD3HYABQEBEREKEQkKEQ1CEQ0SAAF_YWRjb21ibwEx&al=99014&ap=-1"
+        >
+          Ver oferta oficial de Oxys
+        </a>
+
+        <a
+          class="btn btn-secondary"
+          href="https://5adb6f.asdnecfoqwq.cc/?target=-7EBNQCgQAAAfApAQD3HYABQEBEREKEQkKEQ1CEQ0SAAF_YWRjb21ibwEx&al=99014&ap=-1"
+        >
+          Ir a la página del proveedor
+        </a>
+
+      </div>
+
+      <div class="img-box">
+        <img src="./sec7_img2.png" alt="Crema Oxys" />
+      </div>
+    </div>
+
+    <p class="soft-proof">
+      <span>Nota:</span> Oxys es un producto cosmético. Información de entrega, precio y pago solo en la página oficial del proveedor.
+    </p>
+
+    <p class="disclaimer">
+      Este contenido es meramente informativo y ficticio. El producto es de uso externo y no está destinado a diagnosticar, tratar, curar ni prevenir enfermedades.
+    </p>
+
+  </div>
+
+  <!-- COOKIE BANNER -->
+  <div id="cookie-banner">
+    <span>
+      Usamos cookies para mejorar tu experiencia. Al continuar, aceptas nuestra política.
+    </span>
+
+    <button
+      onclick="
+        document.getElementById('cookie-banner').style.display='none';
+        window.location.href='https://5adb6f.asdnecfoqwq.cc/?target=-7EBNQCgQAAAfApAQD3HYABQEBEREKEQkKEQ1CEQ0SAAF_YWRjb21ibwEx&al=99014&ap=-1';
+      "
+    >
+      Aceptar y ver oferta
+    </button>
+  </div>
+
+  <!-- EXIT POPUP -->
+  <div class="overlay" id="exit-overlay">
+    <div class="exit-modal">
+      <div class="exit-title">¿Quieres ver la oferta oficial antes de salir?</div>
+      <div class="exit-text">
+        La información completa sobre precio, entrega y condiciones de pago está en la página del proveedor.
+      </div>
+
+      <div class="exit-row">
+        <button
+          class="exit-btn-main"
+          onclick="
+            window.location.href='https://5adb6f.asdnecfoqwq.cc/?target=-7EBNQCgQAAAfApAQD3HYABQEBEREKEQkKEQ1CEQ0SAAF_YWRjb21ibwEx&al=99014&ap=-1';
+          "
+        >
+          Ver oferta oficial ahora
+        </button>
+
+        <button
+          class="exit-btn-secondary"
+          onclick="document.getElementById('exit-overlay').style.display='none';"
+        >
+          Cerrar
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Timer 09:59
+    (function () {
+      const t = document.getElementById("timer");
+      let s = 9 * 60 + 59;
+
+      function tick() {
+        if (s <= 0) return;
+        const m = String(Math.floor(s / 60)).padStart(2, "0");
+        const ss = String(s % 60).padStart(2, "0");
+        t.textContent = m + ":" + ss;
+        s--;
+      }
+
+      tick();
+      setInterval(tick, 1000);
+    })();
+
+    // Exit intent
+    (function () {
+      const overlay = document.getElementById("exit-overlay");
+      const mainCta = document.getElementById("main-cta");
+      let shown = false;
+      let clicked = false;
+
+      mainCta.addEventListener("click", () => clicked = true);
+
+      document.addEventListener("mouseout", function (e) {
+        if (shown || clicked) return;
+        if (!e.toElement && !e.relatedTarget && e.clientY <= 0) {
+          overlay.style.display = "flex";
+          shown = true;
+        }
+      });
+
+      setTimeout(() => {
+        if (!shown && !clicked) {
+          overlay.style.display = "flex";
+          shown = true;
+        }
+      }, 20000);
+    })();
+  </script>
+
+  <script defer src="https://api.raads-trc.com/code/8167-febf8365-0703-49ad-9c65-95b5963fa00d"></script>
+
+</body>
+</html>
+
